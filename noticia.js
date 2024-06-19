@@ -17,6 +17,12 @@ export default function Noticia({navigation}) {
   const [isEditingWater, setIsEditingWater] = useState(false);
   const [inputValue, setInputValue] = useState(waterConsumed);
 
+
+  const currentDate = new Date();
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; 
+  const year = currentDate.getFullYear();
+
   const handleWaterEdit = () => {
     setIsEditingWater(true);
   };
@@ -43,7 +49,7 @@ export default function Noticia({navigation}) {
           </TouchableOpacity>
         <Text style={styles.greeting}>Notícias</Text>
       </View>
-      <Text>Sorocaba, 05 de maio de 2024</Text>
+      <Text style={styles.dateText}>Dia {day} do mês {month} de {year}</Text>
 
       <View style={styles.imageContainer}>
         <InfoRow

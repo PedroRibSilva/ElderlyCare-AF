@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebaseConfig';
+import api from './api'; // Importe a instância da sua API
 
 function Login({ navigation }) {
   const [userMail, setUserMail] = useState('');
   const [userPass, setUserPass] = useState('');
 
   const handleSubmit = async () => {
-    
-
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, userMail, userPass);
-      const user = userCredential.user;
-      alert('Login Efetuado');
-      console.log(user);
+      const response = await api.post('/auth/login', {
+        email: userMail,
+        password: userPass,
+      });
+
+      const token = response.data.token;
+
+      alert('Login Efetuado com Sucesso!');
       navigation.navigate('Telainicial');
     } catch (error) {
-      const errorMessage = error.message;
-      alert(errorMessage);
-      console.error('Falha no login:', errorMessage);
+      const errorMessage = error.response ? error.response.data.message : 'Erro desconhecido';
+      alert('Falha no login: ' + errorMessage);
+      console.error('Falha no login:', error);
     }
   };
 
   return (
-
     <View style={styles.container}>
-       <View style={styles.topBar} />
+      <View style={styles.topBar} />
       <View style={styles.innerContainer}>
         <Image source={require('./assets/logo1.png')} style={styles.logo} />
         <Text style={styles.subtitle}>Conectando a sua saúde com a gente!</Text>
@@ -66,14 +66,13 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#09374C',
   },
-
   topBar: {
     height: 40,
     backgroundColor: '#09374C',
   },
   innerContainer: {
     padding: 39,
-    backgroundColor: '#ffff', 
+    backgroundColor: '#ffff',
     height: 650,
     borderRadius: 10,
   },

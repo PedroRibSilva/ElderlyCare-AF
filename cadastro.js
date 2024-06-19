@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from './firebaseConfig';
 
-export default function Cadastro({ navigation }) {
+function Cadastro({ navigation, api }) { // injetando api como dependência
   const [form, setForm] = useState({
     nomeCompleto: '',
     email: '',
@@ -25,13 +24,20 @@ export default function Cadastro({ navigation }) {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, form.email, form.senha);
-      console.log(userCredential);
-      alert('Cadastro efetuado com sucesso!');
-      navigation.navigate('Login');
+      const response = await api.post('/users', {
+        name: form.nomeCompleto,
+        email: form.email,
+        password: form.senha,
+      });
+      if (response.status === 201) {
+        alert('Cadastro efetuado com sucesso!');
+        navigation.navigate('Login');
+      } else {
+        alert('Erro ao cadastrar usuário');
+      }
     } catch (error) {
       console.error('Falha no cadastro:', error.message);
-      alert(error.message);
+      alert('Erro no cadastro: ' + error.message);
     }
   };
 
@@ -76,56 +82,65 @@ export default function Cadastro({ navigation }) {
   );
 }
 
+
+Cadastro.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  api: PropTypes.object.isRequired,
+};
+
+export default Cadastro;
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    padding: 16,
+    alignItems: 'center',
     backgroundColor: '#09374C',
   },
   innerContainer: {
-    padding: 40,
-    backgroundColor: 'white',
+    width: '80%',
+    alignItems: 'center',
+    padding: 39,
+    backgroundColor: '#ffff', 
     height: 650,
     borderRadius: 10,
   },
   logo: {
     width: 100,
     height: 100,
-    alignSelf: 'center',
-    marginBottom: 24,
+    marginBottom: 20,
   },
   subtitle: {
     fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 24,
-    color: '#003143',
+    color: '#888',
+    marginBottom: 20,
   },
   input: {
-    height: 40,
-    borderColor: 'orange',
+    width: '100%',
+    padding: 10,
+    marginVertical: 10,
     borderWidth: 1,
-    marginBottom: 12,
-    paddingLeft: 8,
-    borderRadius: 10,
+    borderColor: 'orange',
+    borderRadius: 5,
   },
   button: {
     backgroundColor: '#09374C',
     padding: 10,
+    borderRadius: 5,
+    width: '100%',
     alignItems: 'center',
-    marginBottom: 12,
-    borderRadius: 10,
+    marginTop: 20,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 18,
+    color: '#fff',
+    fontSize: 16,
   },
   loginText: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginTop: 24,
+    marginTop: 20,
+    color: '#888',
   },
   loginLink: {
-    color: 'orange',
+    color: '#1e90ff',
   },
 });

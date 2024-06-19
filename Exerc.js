@@ -7,6 +7,14 @@ const Exerc = ({navigation}) => {
     const videoUrl = 'https://www.youtube.com/watch?v=Dmol3aGr11s'; // Substitua pelo link correto
     Linking.openURL(videoUrl);
   };
+  const openYouTubeVideo1 = () => {
+    const videoUrl = 'https://www.youtube.com/watch?v=5Mmq-Mr05Oc'; // Substitua pelo link correto
+    Linking.openURL(videoUrl);
+  };
+  const openYouTubeVideo2 = () => {
+    const videoUrl = 'https://www.youtube.com/watch?v=NNPNA7Jdyck'; // Substitua pelo link correto
+    Linking.openURL(videoUrl);
+  };
 
   return (
     <View style={styles.container}>
@@ -30,18 +38,18 @@ const Exerc = ({navigation}) => {
           <Text style={styles.videoDescription}>PhysioBRAIN</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={openYouTubeVideo} style={styles.videoCard}>
+        <TouchableOpacity onPress={openYouTubeVideo1} style={styles.videoCard}>
         <Text> </Text>
-          <Text style={styles.videoTitle}>Exercícios para Idosos</Text>
-          <Text style={styles.videoDescription}>Assista ao vídeo no YouTube</Text>
+          <Text style={styles.videoTitle}>EXERCÍCIOS PARA IDOSOS EM CASA | Treino COMPLETO para Terceira Idade | Vídeo 2</Text>
+          <Text style={styles.videoDescription}>Aurélio Alfieri</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={openYouTubeVideo} style={styles.videoCard}>
+        <TouchableOpacity onPress={openYouTubeVideo2} style={styles.videoCard}>
           <Text> </Text>
-          <Text style={styles.videoTitle}>Exercícios para Idosos
-          </Text>
-          <Text style={styles.videoDescription}>Assista ao vídeo no YouTube</Text>
+          <Text style={styles.videoTitle}>Exercícios físicos para idosos fazerem em casa </Text>
+          <Text style={styles.videoDescription}>Acvida Cuidador de Idosos</Text>
         </TouchableOpacity>
+        
       </View>
       <View style={styles.bottomBar}>
         <TouchableOpacity style={styles.infoRow} onPress={() => navigation.navigate('Telainicial')}>

@@ -14,22 +14,17 @@ import Noticia from './noticia'
 import Exerc from './Exerc'
 
 
+
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Iniciacao">
-      <Stack.Screen
-          name="Iniciacao"
-          component={Iniciacao}
-          options={{ headerShown: false }}
-        />
-      <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
+        <Stack.Screen name="Iniciacao" component={Iniciacao}
+                  options={{ headerShown: false }}/>
+        <Stack.Screen name="Login" component={Login}
+                  options={{ headerShown: false }}/>
         <Stack.Screen name="Cadastro" component={Cadastro} 
                   options={{ headerShown: false }}/>
         <Stack.Screen name="Agendamento" component={Agendamento}          

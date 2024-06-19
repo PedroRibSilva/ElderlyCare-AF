@@ -90,10 +90,6 @@ export default function Telainicial({ navigation }) {
         onChangeText={handleWaterChange}
       />
 
-        <TouchableOpacity style={styles.infoRow} onPress={() => navigation.navigate('Agendamento')}>
-            <Image source={require('./figs/remedio.png')} style={styles.icon} />
-            <Text style={styles.text}>Remédio</Text>
-        </TouchableOpacity>
 
 
       <View style={styles.bottomBar}>

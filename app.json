@@ -4,30 +4,29 @@
     "slug": "elderly",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+      },
+      "package": "com.pedrinn_apenas.elderly"
     },
     "database": {
       "@react-native-firebase/app": "^20.0.0",
       "@react-native-firebase/database": "^20.0.0"
-
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8cdf0d82-4ea2-4d0e-b53b-5e5a34107895"
+      }
+    },
+    "owner": "pedrinn_apenas"
   }
 }
